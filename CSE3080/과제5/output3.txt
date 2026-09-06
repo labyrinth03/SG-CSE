@@ -1,0 +1,9 @@
+Push 3
+Exist number
+The top is 3
+Push 5
+The top is 5
+Pop 5
+Exist number
+Pop 3
+The queue is empty

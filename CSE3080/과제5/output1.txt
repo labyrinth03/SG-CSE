@@ -1,0 +1,7 @@
+Insert 4
+Exist number
+Insert 5
+Delete 5
+Delete 4
+The heap is empty
+Insert 3

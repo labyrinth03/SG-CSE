@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [ $# -eq 0 ]
+then
+        echo "Usage: phone searchfor [...searchfor]\n(You didn't tell me what you want to search for.)"
+        exit 0
+else
+        name=$@
+fi
+
+name=$(echo $name | tr ' ' '|')
+
+#print=$(egrep -i $name .data)
+
+egrep -i $name .data | awk -f display.awk
+
+
+
+
+

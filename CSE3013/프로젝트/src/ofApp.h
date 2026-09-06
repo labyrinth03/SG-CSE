@@ -1,0 +1,115 @@
+/*
+
+	ofxWinMenu basic example - ofApp.h
+
+	Copyright (C) 2016-2017 Lynn Jarvis.
+
+	http://www.spout.zeal.co
+
+	=========================================================================
+	This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	=========================================================================
+*/
+
+	#pragma once
+
+#include "ofMain.h"
+#include "ofxWinMenu.h" // Menu addon
+#include <stack>
+#include <queue>
+#include <random>
+
+
+class ofApp : public ofBaseApp {
+
+	public:
+
+		void setup();
+		void update();
+		void draw();
+
+		void keyPressed(int key); // Traps escape key if exit disabled
+		void keyReleased(int key);
+		void mouseMoved(int x, int y);
+		void mouseDragged(int x, int y, int button);
+		void mousePressed(int x, int y, int button);
+		void mouseReleased(int x, int y, int button);
+		void windowResized(int w, int h);
+		void dragEvent(ofDragInfo dragInfo);
+		void gotMessage(ofMessage msg);
+		bool readFile();
+		void freeMemory();
+		bool DFS();
+		void dfsdraw();
+		void exitmani();
+		void startmani();
+		
+
+		int HEIGHT;//미로의 높이
+		int cHEIGHT;//미로 그림의 높이
+		int WIDTH;//미로의 너비
+		int cWIDTH;//미로 그림의 너비
+		int roomnum = 0;//map의 방 넘버
+
+		char** input;//텍스트 파일의 모든 정보를 담는 이차원 배열이다.
+		
+		int memory_flag = 0;	//메모리에 free하지 않은 내용이 남아있는지
+
+		int isOpen; //파일이 열렸는지를 판단하는 변수. 0이면 안열렸고 1이면 열렸다.
+		int isDFS;//DFS함수를 실행시켰는지 판단하는 변수. 0이면 실행안했고 1이면 실행했다.
+
+		typedef struct graph {		//그래프
+			int id;					//방 번호
+			int right;				//오른쪽 열렸는지
+			int down;				//아래 열렸는지
+			int xpos;				//x좌표
+			int ypos;				//y좌표
+			char tag[6];			//어디에서 왔는지
+		}graph;
+		graph** map;				//maz에서 읽은 미로의 형태 그래프로 저장
+
+		stack<graph> s;										//최단거리 저장하는 graph stack s
+		stack<graph> all;									//모든자취 저장하는 graph stack all
+
+		graph* track;									//모든자취 stack 값 저장하는 graph array
+		int tracknum = 0;								//모든자취 stack 값 개수
+		graph* mtrack;									//최단거리 stack 값 저장하는 graph array
+		int mtracknum = 0;								//최단거리 stack 값 개수
+
+		int EXIT_ROW;									//탈출좌표
+		int EXIT_COL;									//탈출좌표
+		int START_ROW;									//시작좌표
+		int START_COL;									//시작좌표
+
+		// Menu
+		ofxWinMenu * menu; // Menu object
+		void appMenuFunction(string title, bool bChecked); // Menu return function
+
+		// Used by example app
+		ofTrueTypeFont myFont;
+        ofImage myImage;
+		float windowWidth, windowHeight;
+		HWND hWnd; // Application window
+		HWND hWndForeground; // current foreground window
+
+		// Example menu variables
+		bool bShowInfo;
+		bool bFullscreen;
+		bool bTopmost;
+		bool isdfs;
+		// Example functions
+ 		void doFullScreen(bool bFull);
+		void doTopmost(bool bTop);
+
+};

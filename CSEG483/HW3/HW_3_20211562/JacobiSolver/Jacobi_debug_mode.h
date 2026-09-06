@@ -1,0 +1,8 @@
+#pragma once
+
+#define _JACOBI_MATRIX_GENERATION_DEBUG_MODE 
+
+//  #define _JACOBI_ITERATION_DEBUG_MODE 
+
+
+

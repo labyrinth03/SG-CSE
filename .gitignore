@@ -1,0 +1,17 @@
+# Visual Studio user and cache files
+.vs/
+*.user
+*.suo
+
+# Common build outputs
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+bin/
+obj/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
